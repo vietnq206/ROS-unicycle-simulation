@@ -1,0 +1,10 @@
+rosdistro: 'noetic
+
+  '
+roslaunch:
+  uris:
+    host_n_20l6pf1m9yj6__33397: http://N-20L6PF1M9YJ6:33397/
+rosversion: '1.15.13
+
+  '
+run_id: 33b5fdfe-56da-11ec-95e3-00155d1fef5f

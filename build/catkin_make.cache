@@ -1,0 +1,2 @@
+beginner_tutorials:custom_msg
+-DCATKIN_DEVEL_PREFIX=/home/vietviet/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/vietviet/catkin_ws/install -G Unix Makefiles

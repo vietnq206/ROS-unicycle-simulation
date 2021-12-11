@@ -1,0 +1,4 @@
+float64 locX
+float64 locY
+---
+float64 distance

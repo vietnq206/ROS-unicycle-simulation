@@ -1,0 +1,37 @@
+<launch>
+
+
+  <!-- Setting common parameter of system -->
+  <param name="LoopRate" value="10" />
+
+
+  <node name="time" type="nodeGenTime" pkg="custom_msg" >
+    <param name="number_int" value="3"/>    
+  </node>
+
+  <node name="sin" type="nodeSin" pkg="custom_msg" >
+    <param name="InPort1" value="generateTime"/>
+    <param name="OutPort1" value="sinGen"/>
+
+  </node>
+
+
+    <!-- <node name="multiply" type="nodeMultiply" pkg="custom_msg" >
+    <param name="InPort1" value="gennerateTime"/>
+    <param name="InPort2" value="sinGen"/>
+    <param name="OutPort1" value="iteGen"/>
+  </node> -->
+
+<!--   
+  <node name="cos" type="nodeCos" pkg="custom_msg" >
+    <param name="InPort1" value="generateTime"/>
+    <param name="OutPort1" value="cosGen"/>
+  </node> -->
+
+
+  <!-- <node name="itegrate" type="nodeItg" pkg="custom_msg" >
+    <param name="InPort1" value="sinGen"/>
+    <param name="OutPort1" value="iteGen"/>
+  </node> -->
+ 
+</launch>

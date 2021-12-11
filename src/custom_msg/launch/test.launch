@@ -1,0 +1,18 @@
+<launch>
+    
+  <node name="time" type="nodeGenTime" pkg="custom_msg" >
+    <param name="number_int" value="3"/>    
+  </node>
+
+  <node name="sin" type="nodeSin" pkg="custom_msg" >
+    <param name="InPort1" value="generateTime"/>
+    <param name="OutPort1" value="sinGen"/>
+  </node>
+  <node name="cos" type="nodeCos" pkg="custom_msg" >
+    <param name="InPort1" value="generateTime"/>
+    <param name="OutPort1" value="cosGen"/>
+  </node>
+  <node name="sub" type="sub_msg" pkg="custom_msg" >
+    <param name="InPort1" value="sinGen"/>
+  </node>
+</launch>
