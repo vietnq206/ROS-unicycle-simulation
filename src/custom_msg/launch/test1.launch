@@ -3,24 +3,78 @@
 
   <!-- Setting common parameter of system -->
   <param name="LoopRate" value="10" />
+  <param name="deltaTime" value="0.1" />
 
 
   <node name="time" type="nodeGenTime" pkg="custom_msg" >
     <param name="number_int" value="3"/>    
   </node>
 
-  <node name="sin" type="nodeSin" pkg="custom_msg" >
-    <param name="InPort1" value="generateTime"/>
-    <param name="OutPort1" value="sinGen"/>
 
+  <node name="U1_sin" type="nodeSin" pkg="custom_msg" >
+    <param name="InPort1" value="generateTime"/>
+    <param name="OutPort1" value="U1_sin_Topic"/>
+  </node>
+  <node name="Itg_U1" type="nodeItg" pkg="custom_msg" >
+    <param name="InPort1" value="U1_sin_Topic"/>
+    <param name="OutPort1" value="Itg_U1_Topic"/>
   </node>
 
 
-    <!-- <node name="multiply" type="nodeMultiply" pkg="custom_msg" >
-    <param name="InPort1" value="gennerateTime"/>
-    <param name="InPort2" value="sinGen"/>
-    <param name="OutPort1" value="iteGen"/>
-  </node> -->
+  <node name="U2_cos" type="nodeCos" pkg="custom_msg" >
+    <param name="InPort1" value="generateTime"/>
+    <param name="OutPort1" value="U2_cos_Topic"/>
+  </node>
+ <node name="Itg_U2" type="nodeItg" pkg="custom_msg" >
+    <param name="InPort1" value="U2_cos_Topic"/>
+    <param name="OutPort1" value="Itg_U2_Topic"/>
+  </node>  
+ 
+  <node name="Phi_sin" type="nodeSin" pkg="custom_msg" >
+    <param name="InPort1" value="Itg_U2_Topic"/>
+    <param name="OutPort1" value="Phi_sin_Topic"/>
+  </node>
+  <node name="Phi_cos" type="nodeCos" pkg="custom_msg" >
+    <param name="InPort1" value="Itg_U2_Topic"/>
+    <param name="OutPort1" value="Phi_cos_Topic"/>
+  </node>
+
+ 
+  <node name="X_multiply" type="nodeMul" pkg="custom_msg" >
+    <param name="InPort1" value="Itg_U1_Topic"/>
+    <param name="InPort2" value="Phi_sin_Topic"/>
+    <param name="OutPort1" value="X_multiply_Topic"/>
+  </node>
+ <node name="Itg_X" type="nodeItg" pkg="custom_msg" >
+    <param name="InPort1" value="X_multiply_Topic"/>
+    <param name="OutPort1" value="Itg_X_Topic"/>
+ </node>
+  <node name="Write_X" type="nodeWriteOut" pkg="custom_msg" >
+    <param name="InPort1" value="Itg_X_Topic"/>
+    <param name="FileOutName" value="/home/vietviet/catkin_ws/valX.txt"/>
+ </node>   
+
+
+
+
+  <node name="Y_multiply" type="nodeMul" pkg="custom_msg" >
+    <param name="InPort1" value="Itg_U1_Topic"/>
+    <param name="InPort2" value="Phi_cos_Topic"/>
+    <param name="OutPort1" value="Y_multiply_Topic"/>
+  </node>
+ <node name="Itg_Y" type="nodeItg" pkg="custom_msg" >
+    <param name="InPort1" value="Y_multiply_Topic"/>
+    <param name="OutPort1" value="Itg_Y_Topic"/>
+ </node>
+  <node name="Write_Y" type="nodeWriteOut" pkg="custom_msg" >
+    <param name="InPort1" value="Itg_Y_Topic"/>
+    <param name="FileOutName" value="/home/vietviet/catkin_ws/valY.txt"/>
+ </node>  
+
+
+
+
+
 
 <!--   
   <node name="cos" type="nodeCos" pkg="custom_msg" >

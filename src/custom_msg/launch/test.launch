@@ -1,18 +1,16 @@
 <launch>
     
+  <param name="LoopRate" value="10" />
+  <param name="deltaTime" value="0.1" />
+
+
   <node name="time" type="nodeGenTime" pkg="custom_msg" >
     <param name="number_int" value="3"/>    
   </node>
 
-  <node name="sin" type="nodeSin" pkg="custom_msg" >
+  <node name="Write_Y" type="nodeWriteOut" pkg="custom_msg" >
     <param name="InPort1" value="generateTime"/>
-    <param name="OutPort1" value="sinGen"/>
-  </node>
-  <node name="cos" type="nodeCos" pkg="custom_msg" >
-    <param name="InPort1" value="generateTime"/>
-    <param name="OutPort1" value="cosGen"/>
-  </node>
-  <node name="sub" type="sub_msg" pkg="custom_msg" >
-    <param name="InPort1" value="sinGen"/>
-  </node>
+    <param name="FileOutName" value="/home/vietviet/catkin_ws/valY.txt"/>
+ </node>  
+
 </launch>
