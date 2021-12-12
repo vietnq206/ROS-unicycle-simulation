@@ -13,8 +13,9 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "pub_GenTime");
     ros::NodeHandle node;
     int LoopRate;
+    double deltaTime;
     node.getParam("LoopRate",LoopRate);
-
+    node.getParam("deltaTime",deltaTime);
 
     std::string nodeName = ros::this_node::getName();
     ros::Publisher signal_pub = node.advertise<custom_msg::custom>( "generateTime", 1000);
@@ -24,7 +25,7 @@ int main(int argc, char **argv)
     {
 
         custom_msg::custom msg;
-        time = time + 1;
+        time = time + deltaTime;
         msg.time = time; 
         msg.data = time;
         signal_pub.publish(msg);
